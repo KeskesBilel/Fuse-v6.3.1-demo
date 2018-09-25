@@ -17,7 +17,10 @@ import { Board } from 'app/main/apps/scrumboard/board.model';
 })
 export class ScrumboardComponent implements OnInit, OnDestroy
 {
-    boards: any[];
+    boards:any;
+  
+
+
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -30,7 +33,11 @@ export class ScrumboardComponent implements OnInit, OnDestroy
      */
     constructor(
         private  _router: Router,
-        private _scrumboardService: ScrumboardService
+        private _scrumboardService  : ScrumboardService,
+       
+       
+
+   
     )
     {
         // Set the private defaults
@@ -44,13 +51,15 @@ export class ScrumboardComponent implements OnInit, OnDestroy
     /**
      * On init
      */
+
+
     ngOnInit(): void
     {
-        this._scrumboardService.onBoardsChanged
+       this._scrumboardService.onBoardsChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(boards => {
-                this.boards = boards;
-            });
+                this.boards = boards.boards;
+            });  
     }
 
     /**
@@ -70,6 +79,7 @@ export class ScrumboardComponent implements OnInit, OnDestroy
     /**
      * New board
      */
+    //le fonction pour ajouter un projet 
     newBoard(): void
     {
         const newBoard = new Board({});
@@ -77,4 +87,7 @@ export class ScrumboardComponent implements OnInit, OnDestroy
             this._router.navigate(['/apps/scrumboard/boards/' + newBoard.id + '/' + newBoard.uri]);
         });
     }
+
+ 
+
 }

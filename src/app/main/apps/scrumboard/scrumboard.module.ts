@@ -23,6 +23,8 @@ import { ScrumboardEditBoardNameComponent } from 'app/main/apps/scrumboard/board
 import { ScrumboardBoardSettingsSidenavComponent } from 'app/main/apps/scrumboard/board/sidenavs/settings/settings.component';
 import { ScrumboardBoardColorSelectorComponent } from 'app/main/apps/scrumboard/board/sidenavs/settings/board-color-selector/board-color-selector.component';
 
+
+
 const routes: Routes = [
     {
         path     : 'boards',
@@ -77,7 +79,7 @@ const routes: Routes = [
         MatSidenavModule,
         MatToolbarModule,
         MatTooltipModule,
-
+    
         NgxDnDModule,
 
         FuseSharedModule,
@@ -87,6 +89,7 @@ const routes: Routes = [
     providers      : [
         ScrumboardService,
         BoardResolve
+ 
     ],
     entryComponents: [ScrumboardCardDialogComponent]
 })

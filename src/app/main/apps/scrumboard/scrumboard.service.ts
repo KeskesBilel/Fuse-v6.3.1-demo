@@ -6,7 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 @Injectable()
 export class ScrumboardService implements Resolve<any>
 {
-    boards: any[];
+    boards:any ;
     routeParams: any;
     board: any;
 
@@ -55,16 +55,25 @@ export class ScrumboardService implements Resolve<any>
      *
      * @returns {Promise<any>}
      */
+
+     /**
+      * api/scrumboard-boards
+      */
     getBoards(): Promise<any>
     {
-        return new Promise((resolve, reject) => {
-            this._httpClient.get('api/scrumboard-boards')
-                .subscribe((response: any) => {
+     
+      return new Promise((resolve, reject) => {
+            this._httpClient.get('http://127.0.0.1/backend/project.php')
+            
+                .subscribe((response: Object) => {
                     this.boards = response;
+                    console.log(response);
                     this.onBoardsChanged.next(this.boards);
                     resolve(this.boards);
                 }, reject);
+              
         });
+       
     }
 
     /**
@@ -76,7 +85,7 @@ export class ScrumboardService implements Resolve<any>
     getBoard(boardId): Promise<any>
     {
         return new Promise((resolve, reject) => {
-            this._httpClient.get('api/scrumboard-boards/' + boardId)
+            this._httpClient.get('http://127.0.0.1/backend/project.php/' + boardId)
                 .subscribe((response: any) => {
                     this.board = response;
                     this.onBoardChanged.next(this.board);

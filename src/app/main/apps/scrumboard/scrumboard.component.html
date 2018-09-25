@@ -12,12 +12,15 @@
 
         <!-- BOARD -->
         <div class="board-list-item" *ngFor="let board of boards"
-             [routerLink]="'/apps/scrumboard/boards/'+board.id+'/'+board.uri"
+             [routerLink]="'/apps/scrumboard/boards/'+board.id_projet+'/'+board.uri"
              fxLayout="column" fxLayoutAlign="center center"
              [@animate]="{value:'*',params:{y:'100%'}}">
             <mat-icon class="s-56">assessment</mat-icon>
-            <div class="board-name">{{board.name}}</div>
+            <div class="board-name">{{board.name}}</div> 
+               
+                  
         </div>
+    
         <!-- / BOARD -->
 
         <!-- NEW BOARD BUTTON -->
