@@ -9,7 +9,7 @@ export class ScrumboardService implements Resolve<any>
     boards:any ;
     routeParams: any;
     board: any;
-
+    card: any;
     onBoardsChanged: BehaviorSubject<any>;
     onBoardChanged: BehaviorSubject<any>;
 
@@ -84,15 +84,18 @@ export class ScrumboardService implements Resolve<any>
      */
     getBoard(boardId): Promise<any>
     {
+        console.log("bordidssss",boardId);
         return new Promise((resolve, reject) => {
-            this._httpClient.get('http://127.0.0.1/backend/project.php/' + boardId)
+            this._httpClient.get('http://127.0.0.1/backend/tasktt.php/' + boardId)
                 .subscribe((response: any) => {
                     this.board = response;
+                    
                     this.onBoardChanged.next(this.board);
                     resolve(this.board);
                 }, reject);
         });
     }
+
 
     /**
      * Add card
@@ -243,6 +246,11 @@ export class BoardResolve implements Resolve<any>
 
     /**
      * Resolver
+
+
+
+
+
      *
      * @param {ActivatedRouteSnapshot} route
      * @returns {Promise<any>}
@@ -250,5 +258,7 @@ export class BoardResolve implements Resolve<any>
     resolve(route: ActivatedRouteSnapshot): Promise<any>
     {
         return this._scrumboardService.getBoard(route.paramMap.get('boardId'));
+       
+
     }
 }

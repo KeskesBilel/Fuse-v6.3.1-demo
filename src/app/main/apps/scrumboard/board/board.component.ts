@@ -19,6 +19,7 @@ import { List } from 'app/main/apps/scrumboard/list.model';
 export class ScrumboardBoardComponent implements OnInit, OnDestroy
 {
     board: any;
+    card: any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -45,8 +46,9 @@ export class ScrumboardBoardComponent implements OnInit, OnDestroy
         this._scrumboardService.onBoardChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(board => {
-                this.board = board;
+                this.board = board.task;    
             });
+         
     }
 
     /**
